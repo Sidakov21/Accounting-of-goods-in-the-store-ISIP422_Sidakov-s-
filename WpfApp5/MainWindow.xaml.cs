@@ -20,35 +20,12 @@ namespace WpfApp5
     /// </summary>
     /// 
 
-    public class product
-    {
-        private static int _lastProductId = 1;
-        private string _name;
-        private decimal _price;
-        private int _quantity;
-        private bool _isAvailable;
-        private string _category;
-
-        // Статический список категорий
-        public static string[] Categories = new string[]
-        {
-            "Электроника",
-            "Одежда",
-            "Продукты",
-            "Книги",
-            "Спорттовары"
-        };
-
-        
-    }
-
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-
-            //Изменения Git
+            DataContext = new MainViewModel();
         }
     }
 }

@@ -37,15 +37,13 @@
                   ItemsSource="{Binding FilteredProducts}"
                   SelectedItem="{Binding SelectedProduct}"
                   AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single">
+                  CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код" Binding="{Binding Code}" Width="80"/>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="80"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="80"/>
-                <DataGridCheckBoxColumn Header="В наличии" Binding="{Binding IsAvailable}" Width="70" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="В наличии" Binding="{Binding IsAvailable, Mode=OneWay}" Width="70" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
