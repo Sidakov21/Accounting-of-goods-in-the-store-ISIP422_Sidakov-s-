@@ -6,7 +6,48 @@
         xmlns:local="clr-namespace:WpfApp5"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель поиска -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="200" Margin="0,0,10,0" 
+                     ToolTip="Поиск по названию или коду"/>
+            <ComboBox ItemsSource="{Binding Categories}" 
+                      SelectedItem="{Binding SelectedSearchCategory}"
+                      Width="120"/>
+        </StackPanel>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Добавить товар" Command="{Binding AddProductCommand}" Margin="0,0,5,0"/>
+            <Button Content="Удалить товар" Command="{Binding DeleteProductCommand}" Margin="5,0"/>
+            <Button Content="Заказать поставку" Command="{Binding SupplyProductCommand}" Margin="5,0"/>
+            <Button Content="Продать товар" Command="{Binding SellProductCommand}" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- DataGrid с товарами -->
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding FilteredProducts}"
+                  SelectedItem="{Binding SelectedProduct}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding Code}" Width="80"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="80"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="80"/>
+                <DataGridCheckBoxColumn Header="В наличии" Binding="{Binding IsAvailable}" Width="70" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
