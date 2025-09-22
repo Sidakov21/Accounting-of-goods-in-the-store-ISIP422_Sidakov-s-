@@ -23,6 +23,8 @@ namespace WpfApp5
         public MainWindow()
         {
             InitializeComponent();
+
+            //Изменения Git
         }
     }
 }
